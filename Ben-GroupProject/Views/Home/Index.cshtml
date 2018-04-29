@@ -1,0 +1,59 @@
+﻿@{
+	ViewBag.Title = "Labs List";
+}
+
+@model IEnumerable<Ben_GroupProject.Models.Lab>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Wallace labs</h2>
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.classInSession)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.classInfo)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.roomNumber)
+				</th>
+				<th>
+					Available Equipment
+				</th>
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.classInSession)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.classInfo)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.roomNumber)
+					</td>
+					<td>
+						@foreach (var equipment in item.Equipments)
+						{
+							@Html.DisplayFor(modelItem => equipment.type)
+							 <br />
+						}
+					</td>
+					<td>
+						@Html.ActionLink("View", "Details", "Labs", new { id = item.Id }, null)
+					</td>
+				</tr>
+			}
+
+		</table>
+	</div>
+</div>

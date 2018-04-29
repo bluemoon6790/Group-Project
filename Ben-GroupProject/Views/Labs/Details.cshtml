@@ -1,0 +1,50 @@
+﻿@model Ben_GroupProject.Models.Lab
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+	<div>
+		<h2>Lab - @Html.DisplayFor(model => model.roomNumber)</h2>
+		<hr />
+		<dl class="dl-horizontal">
+			@if (Model.classInSession == true)
+			{
+
+				<dt>
+					<strong> Class is currently in session </strong>
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.classInfo)
+				</dd>
+			}
+
+
+
+		</dl>
+	</div>
+</div>
+<div class="row">
+	@foreach (var computer in Model.Computers)
+	{
+	<div class="col-xs-6 col-sm-4 col-md-2">
+		<div class="inner @(computer.availability == false ? "inactive" : "active" ) ">
+			<dl class="dl-horizontal">
+				<dt>
+					Type:
+				</dt>
+				<dd>
+					@Html.DisplayFor(modelItem => computer.type)
+				</dd>
+			</dl>
+		</div>
+	</div>
+	}
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
